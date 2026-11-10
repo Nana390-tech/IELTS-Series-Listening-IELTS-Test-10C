@@ -1,0 +1,662 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>IELTS Listening Test 10C</title>
+<style>
+:root{
+  --deep:#3d1023; --pri:#7a2343; --pri-2:#9c4b68; --pri-soft:#f5e6ec;
+  --acc:#e8b93e; --acc-deep:#8a6408; --acc-soft:#fbf1d5;
+  --coral:#d9573f; --coral-soft:#fbe2dc;
+  --ok:#2f8f6b; --ok-soft:#dcf1e7;
+  --amber:#b7791f; --amber-soft:#fdf3d8;
+  --bg:#f8f4f2; --card:#ffffff; --ink:#22243a; --muted:#5f6278; --line:#dedbe6;
+  --r:16px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:'Segoe UI',system-ui,-apple-system,Roboto,Helvetica,Arial,sans-serif;font-size:18px;line-height:1.6;padding-bottom:120px}
+.ar{display:none;font-family:'Segoe UI',Tahoma,'Geeza Pro','Noto Sans Arabic',sans-serif;direction:rtl;text-align:right;color:var(--pri);font-size:.9em;line-height:1.8}
+body.ar-on .ar{display:block}
+body.ar-on span.ar{display:inline}
+button{font-family:inherit;cursor:pointer}
+/* header */
+header{background:linear-gradient(120deg,var(--deep),var(--pri) 70%,#9b3557);color:#fff;padding:22px 20px 18px;position:relative;overflow:hidden}
+header::after{content:"";position:absolute;right:-60px;top:-60px;width:230px;height:230px;border-radius:50%;background:radial-gradient(circle,var(--acc) 0,rgba(232,185,62,0) 70%);opacity:.55}
+.hwrap{max-width:980px;margin:0 auto;display:flex;gap:14px;align-items:center;justify-content:space-between;flex-wrap:wrap;position:relative;z-index:1}
+.kicker{font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;color:var(--acc);font-weight:600}
+h1{margin:2px 0 0;font-size:1.75rem;line-height:1.2}
+.sub{opacity:.85;font-size:.95rem}
+.hbtns{display:flex;gap:8px;flex-wrap:wrap}
+.hbtn{background:rgba(255,255,255,.12);color:#fff;border:1px solid rgba(255,255,255,.3);border-radius:999px;padding:8px 14px;font-size:.9rem}
+.hbtn:hover{background:rgba(255,255,255,.22)}
+.hbtn.arbtn{font-family:'Segoe UI',Tahoma,'Geeza Pro','Noto Sans Arabic',sans-serif;font-weight:600;min-width:44px}
+body.ar-on .hbtn.arbtn{background:var(--acc);color:var(--deep);border-color:var(--acc)}
+/* sticky progress + tabs */
+.sticky{position:sticky;top:0;z-index:20;background:var(--bg);border-bottom:1px solid var(--line);box-shadow:0 2px 10px rgba(43,45,71,.06)}
+.progress{height:6px;background:var(--pri-soft)}
+.progress i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--acc),var(--coral));transition:width .4s}
+.tabs{max-width:980px;margin:0 auto;display:flex;gap:6px;padding:10px 16px;overflow-x:auto}
+.tab{flex:1 0 auto;border:2px solid var(--line);background:#fff;color:var(--pri);border-radius:12px;padding:8px 14px;font-weight:600;font-size:.95rem;white-space:nowrap}
+.tab small{display:block;font-weight:400;color:var(--muted);font-size:.75rem}
+.tab.on{background:var(--pri);border-color:var(--pri);color:#fff}
+.tab.on small{color:#f0dbe4}
+.tab .badge{display:inline-block;margin-left:6px;background:var(--acc);color:var(--deep);border-radius:999px;padding:0 8px;font-size:.75rem}
+main{max-width:980px;margin:0 auto;padding:18px 16px}
+.part{display:none}
+.part.on{display:block;animation:fade .35s ease}
+@keyframes fade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+.card{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:20px 22px;margin-bottom:16px;box-shadow:0 1px 3px rgba(43,45,71,.05)}
+.parthead{display:flex;justify-content:space-between;align-items:flex-end;gap:12px;flex-wrap:wrap;margin-bottom:10px}
+.parthead h2{margin:0;font-size:1.45rem;color:var(--deep)}
+.parthead .qr{color:var(--muted);font-size:.95rem}
+/* audio */
+.audiocard{background:linear-gradient(135deg,var(--deep),var(--pri));color:#fff;border:none}
+.audiocard .row{display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.audiocard .ico{width:52px;height:52px;border-radius:50%;background:var(--acc);display:grid;place-items:center;flex:none}
+.audiocard audio{flex:1;min-width:240px;height:44px}
+.audiocard .meta{font-size:.85rem;opacity:.9;margin-top:8px}
+.audiocard .err{display:none;background:var(--coral-soft);color:#7a2615;border-radius:10px;padding:8px 12px;margin-top:10px;font-size:.9rem}
+.plays{background:rgba(255,255,255,.15);border-radius:999px;padding:3px 10px;font-size:.8rem;white-space:nowrap}
+/* prep */
+details.prep{background:var(--acc-soft);border:1px solid #efd892;border-radius:var(--r);padding:0;margin-bottom:16px}
+details.prep summary{padding:14px 20px;font-weight:600;color:var(--acc-deep);cursor:pointer;list-style:none;display:flex;align-items:center;gap:10px}
+details.prep summary::-webkit-details-marker{display:none}
+details.prep summary::before{content:"▸";transition:transform .2s}
+details.prep[open] summary::before{transform:rotate(90deg)}
+.prepbody{padding:0 20px 16px}
+.prepbody ul{margin:6px 0 10px;padding-left:22px}
+.prepbody li{margin:4px 0}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:6px}
+.chip{background:#fff;border:1px solid #efd892;border-radius:999px;padding:4px 12px;font-size:.88rem}
+.chip .ar{display:none}
+body.ar-on .chip .ar{display:inline;margin-left:6px;font-size:.85rem}
+/* instructions */
+.instr{border-left:5px solid var(--acc);background:#fbfaf7;padding:10px 14px;border-radius:0 10px 10px 0;margin:4px 0 14px}
+.instr b{color:var(--deep)}
+.secttl{font-size:1.3rem;font-weight:700;text-align:center;color:var(--deep);margin:6px 0 12px}
+.subh{font-weight:700;color:var(--pri);margin:16px 0 6px;font-size:1.05rem}
+.qhead{display:inline-block;background:var(--pri-soft);color:var(--pri);font-weight:600;border-radius:8px;padding:2px 10px;font-size:.9rem;margin-bottom:6px}
+ul.notes{list-style:none;padding:0;margin:0}
+ul.notes li{padding:7px 0 7px 22px;position:relative}
+ul.notes li::before{content:"";position:absolute;left:4px;top:18px;width:7px;height:7px;border-radius:50%;background:var(--acc)}
+ul.notes li.dash{padding-left:40px}
+ul.notes li.dash::before{left:22px;width:10px;height:2px;border-radius:0;top:20px;background:var(--pri-2)}
+.gap{display:inline-flex;align-items:center;gap:6px;vertical-align:middle;margin:2px 2px}
+.qn{white-space:nowrap;flex:none;display:inline-grid;place-items:center;min-width:28px;height:28px;border-radius:8px;background:var(--deep);color:#fff;font-size:.8rem;font-weight:600;padding:0 5px}
+.gap input{font:inherit;font-size:1rem;width:170px;padding:5px 10px;border:2px solid var(--line);border-radius:10px;background:#fff;color:var(--ink);transition:border .2s,background .2s}
+.gap input:focus{outline:none;border-color:var(--acc);background:#fffaf0}
+.gap input.ok,.lchip.ok,.opt.ok{border-color:var(--ok)!important;background:var(--ok-soft)!important}
+.gap input.bad,.lchip.bad,.opt.bad{border-color:var(--coral)!important;background:var(--coral-soft)!important}
+.lchip.sel.ok,.opt.sel.ok .L{color:#fff!important}
+.lchip.sel.ok{background:var(--ok)!important}
+.lchip.sel.bad{background:var(--coral)!important;color:#fff!important}
+.opt.sel.ok .L{background:var(--ok)!important}
+.opt.sel.bad .L{background:var(--coral)!important;color:#fff}
+.gap input.amb{border-color:var(--amber)!important;background:var(--amber-soft)!important}
+/* mcq */
+.mcq{padding:12px 0;border-bottom:1px dashed var(--line)}
+.mcq:last-child{border-bottom:none}
+.stem{font-weight:500;margin-bottom:8px;display:flex;gap:10px;align-items:flex-start}
+.opts{display:grid;gap:8px;padding-left:38px}
+.opt{display:flex;gap:10px;align-items:center;border:2px solid var(--line);border-radius:12px;padding:8px 12px;background:#fff;text-align:left;font-size:1rem;color:var(--ink);width:100%}
+.opt:hover{border-color:var(--pri-2)}
+.opt .L{flex:none;width:30px;height:30px;border-radius:50%;display:grid;place-items:center;background:var(--pri-soft);color:var(--pri);font-weight:700}
+.opt.sel{border-color:var(--pri);background:#f7ecf1}
+.opt.sel .L{background:var(--pri);color:#fff}
+.opt.key{border-style:dashed;border-color:var(--ok)}
+.lockd .opt,.lockd .lchip{pointer-events:none}
+/* letter chips */
+.lrow{display:flex;align-items:center;gap:10px;padding:9px 0;border-bottom:1px dashed var(--line);flex-wrap:wrap}
+.lrow:last-child{border-bottom:none}
+.lrow .lab{flex:1 1 220px;font-weight:500}
+.lchips{display:flex;gap:5px;flex-wrap:wrap}
+.lchip{width:38px;height:38px;border-radius:10px;border:2px solid var(--line);background:#fff;font-weight:700;color:var(--pri);font-size:1rem}
+.lchip:hover{border-color:var(--pri-2)}
+.lchip.sel{background:var(--pri);border-color:var(--pri);color:#fff}
+.lchip.key{border-style:dashed;border-color:var(--ok);color:var(--ok)}
+.box{border:2px solid var(--pri-soft);border-radius:12px;padding:10px 16px;margin:6px 0 14px;background:#fcf7f9}
+.box .bt{font-weight:700;color:var(--pri);text-align:center;margin-bottom:4px}
+.box div.o{padding:3px 0}
+.box div.o b{display:inline-block;width:26px;color:var(--acc-deep)}
+.mapwrap{display:flex;justify-content:center;margin:6px 0 10px}
+.mapwrap svg{width:100%;max-width:620px;height:auto;border-radius:12px;background:#fff;cursor:zoom-in}
+.mapnote{text-align:center;font-size:.8rem;color:var(--muted);margin-top:-4px;margin-bottom:10px}
+/* actions */
+.actions{display:flex;gap:10px;flex-wrap:wrap;justify-content:flex-end;margin:10px 0 20px}
+.btn{border:none;border-radius:12px;padding:12px 20px;font-weight:600;font-size:1rem}
+.btn.main{background:var(--acc);color:var(--deep)}
+.btn.main:hover{background:#efc95f}
+.btn.alt{background:#fff;border:2px solid var(--pri);color:var(--pri)}
+.btn.dark{background:var(--deep);color:#fff}
+.btn:disabled{opacity:.45;cursor:not-allowed}
+/* review */
+.scorebar{display:none;align-items:center;gap:14px;background:var(--deep);color:#fff;border-radius:var(--r);padding:14px 18px;margin-bottom:16px;flex-wrap:wrap}
+.scorebar.on{display:flex}
+.scorebar .big{font-size:1.8rem;font-weight:700;color:var(--acc)}
+.legend{display:flex;gap:12px;font-size:.82rem;flex-wrap:wrap}
+.legend span::before{content:"";display:inline-block;width:12px;height:12px;border-radius:4px;margin-right:5px;vertical-align:-1px}
+.legend .g::before{background:var(--ok)}
+.legend .a::before{background:var(--amber)}
+.legend .r::before{background:var(--coral)}
+.review{display:none;margin-top:6px;border-radius:12px;padding:10px 14px;font-size:.92rem;background:#faf6f7;border:1px solid var(--line)}
+.review.on{display:block}
+.review .verdict{font-weight:700}
+.review .verdict.g{color:var(--ok)} .review .verdict.r{color:var(--coral)} .review .verdict.a{color:var(--amber)}
+.review .ev{margin-top:6px;background:#fff;border-left:4px solid var(--acc);padding:6px 10px;border-radius:0 8px 8px 0;font-style:italic;color:#4a1f30}
+.review .ev mark{background:var(--acc-soft);color:var(--deep);font-style:normal;font-weight:600;padding:0 3px;border-radius:4px}
+.review .ev s{color:var(--coral);text-decoration-thickness:2px}
+.review .tip{margin-top:6px;color:var(--pri)}
+.review .tip::before{content:"💡 "}
+.inl-review{display:block}
+/* palette dock */
+.dock{position:fixed;left:0;right:0;bottom:0;z-index:30;background:rgba(61,16,35,.97);backdrop-filter:blur(6px);padding:8px 10px 10px}
+.dockin{max-width:1100px;margin:0 auto;display:flex;gap:8px 10px;flex-wrap:wrap;justify-content:center;align-items:center}
+.dgrp{display:flex;gap:3px;align-items:center;padding-right:10px;border-right:1px solid rgba(255,255,255,.18)}
+.dgrp:last-child{border-right:none}
+.dgrp .pl{color:var(--acc);font-size:.7rem;font-weight:600;margin-right:4px;writing-mode:horizontal-tb;white-space:nowrap}
+.dq{width:26px;height:26px;border-radius:7px;border:1px solid rgba(255,255,255,.25);background:transparent;color:#d9d8e8;font-size:.72rem;font-weight:600;padding:0}
+.dq.ans{background:#8a8db0;color:#fff;border-color:#8a8db0}
+.dq.ok{background:var(--ok);border-color:var(--ok);color:#fff}
+.dq.amb{background:var(--amber);border-color:var(--amber);color:#fff}
+.dq.bad{background:var(--coral);border-color:var(--coral);color:#fff}
+.flash{animation:flash 1.2s ease}
+@keyframes flash{0%,100%{box-shadow:none}30%{box-shadow:0 0 0 5px rgba(232,185,62,.7)}}
+/* results */
+.resgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px;margin-bottom:16px}
+.stat{background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:16px;text-align:center}
+.stat .v{font-size:2.3rem;font-weight:700;color:var(--deep);line-height:1.1}
+.stat .k{color:var(--muted);font-size:.85rem}
+.stat.band{background:linear-gradient(135deg,var(--acc),#f2d27f);border:none}
+.bars .b{display:grid;grid-template-columns:160px 1fr 60px;gap:10px;align-items:center;margin:8px 0;font-size:.92rem}
+.bars .t{height:16px;background:var(--pri-soft);border-radius:999px;overflow:hidden}
+.bars .t i{display:block;height:100%;background:linear-gradient(90deg,var(--pri),var(--pri-2));border-radius:999px;transition:width .8s}
+.bars .t i.hi{background:linear-gradient(90deg,var(--ok),#5cb893)}
+.bars .t i.lo{background:linear-gradient(90deg,var(--coral),#e88a74)}
+.qtable{width:100%;border-collapse:collapse;margin:6px 0 10px;font-size:.95rem}
+.qtable th{background:var(--pri);color:#fff;text-align:left;padding:8px 10px;font-weight:600}
+.qtable td{border:1px solid var(--line);padding:8px 10px;vertical-align:middle}
+.qtable tr:nth-child(even) td{background:#fbf6f8}
+.tblwrap{overflow-x:auto}
+.flow{display:flex;flex-direction:column;align-items:stretch;gap:0;margin:8px 0}
+.flowstep{background:#fff;border:2px solid var(--pri-soft);border-radius:12px;padding:10px 14px;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.flowstep .lab{flex:1 1 260px}
+.flowarrow{text-align:center;color:var(--pri);font-size:1.3rem;line-height:1.6}
+.bandtbl{width:100%;border-collapse:collapse;font-size:.85rem;margin-top:8px}
+.bandtbl td,.bandtbl th{border:1px solid var(--line);padding:4px 6px;text-align:center}
+.bandtbl th{background:var(--pri-soft);color:var(--pri)}
+.bandtbl td.me{background:var(--acc);font-weight:700}
+.advice li{margin:6px 0}
+/* certificate */
+.cert{display:none;margin-top:16px;background:#fff;border:10px solid var(--deep);outline:3px solid var(--acc);outline-offset:-18px;border-radius:6px;padding:46px 30px;text-align:center;position:relative}
+.cert.on{display:block}
+.cert .ck{letter-spacing:.24em;text-transform:uppercase;color:var(--acc-deep);font-size:.85rem;font-weight:600}
+.cert h3{font-size:2rem;margin:6px 0 4px;color:var(--deep)}
+.cert .nm{font-size:1.8rem;font-weight:600;color:var(--pri);border-bottom:2px solid var(--acc);display:inline-block;padding:0 26px 4px;margin:14px 0}
+.cert .sc{font-size:1.1rem;margin:8px 0}
+.cert .seal{width:86px;height:86px;border-radius:50%;background:var(--acc);color:var(--deep);display:grid;place-items:center;font-weight:700;margin:14px auto 6px;font-size:1.05rem;box-shadow:0 0 0 6px var(--acc-soft)}
+.cert .by{color:var(--muted);font-size:.9rem;margin-top:14px}
+.namebox{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.namebox input{font:inherit;padding:10px 14px;border:2px solid var(--line);border-radius:12px;flex:1 1 220px}
+footer{text-align:center;color:var(--muted);font-size:.85rem;padding:20px 10px 30px}
+/* modal */
+.modal{position:fixed;inset:0;background:rgba(20,20,35,.82);z-index:60;display:none;align-items:center;justify-content:center;padding:16px}
+.modal.on{display:flex}
+.modal svg{width:100%;max-width:1100px;max-height:90vh;background:#fff;border-radius:12px}
+.toast{position:fixed;left:50%;bottom:90px;transform:translateX(-50%) translateY(20px);background:var(--deep);color:#fff;padding:10px 18px;border-radius:12px;opacity:0;transition:.3s;z-index:70;pointer-events:none;font-size:.95rem}
+.toast.on{opacity:1;transform:translateX(-50%)}
+canvas#confetti{position:fixed;inset:0;pointer-events:none;z-index:80}
+@media (max-width:1180px){.dgrp:not(.cur){display:none}.dgrp{border-right:none}.dock .dq{width:30px;height:30px}}
+@media (max-width:640px){
+  body{font-size:17px}
+  h1{font-size:1.35rem}
+  .card{padding:16px 14px}
+  .opts{padding-left:0}
+  .gap input{width:140px}
+  .bars .b{grid-template-columns:110px 1fr 48px}
+}
+@media print{
+  body *{visibility:hidden}
+  .cert,.cert *{visibility:visible}
+  .cert{position:absolute;left:0;top:0;width:100%}
+  .dock,.sticky{display:none}
+}
+</style>
+</head>
+<body>
+<header>
+  <div class="hwrap">
+    <div>
+      <div class="kicker">LSC 0316 · Post-Midterm Listening · Test 10C</div>
+      <h1>IELTS Listening Practice Test 10C</h1>
+      <div class="sub">Cambridge IELTS 19 · Test 3 · 4 parts · 40 questions</div>
+    </div>
+    <div class="hbtns">
+      <button class="hbtn arbtn" id="arBtn" title="Arabic help">ع</button>
+      <button class="hbtn" id="saveBtn">💾 Save</button>
+      <button class="hbtn" id="loadBtn">📂 Load</button>
+      <button class="hbtn" id="resetBtn">↺ Reset</button>
+      <input type="file" id="loadFile" accept=".json,application/json" hidden>
+    </div>
+  </div>
+</header>
+<div class="sticky">
+  <div class="progress"><i id="prog"></i></div>
+  <nav class="tabs" id="tabs"></nav>
+</div>
+<main id="main"></main>
+<footer>Designed by: Nazila Motahari · Recordings and questions: <i>Cambridge IELTS 19</i>, Test 3</footer>
+<div class="dock"><div class="dockin" id="dock"></div></div>
+<div class="modal" id="modal"></div>
+<div class="toast" id="toast"></div>
+<canvas id="confetti"></canvas>
+
+<script>
+const DATA={parts:[],questions:[],mapSVG:''};
+(function(){
+const P=DATA.parts, Q=DATA.questions;
+const G=(n,part,ans,o)=>Q.push(Object.assign({n,part,type:'gap',ans:[].concat(ans),tname:'Note completion',ev:[]},o));
+const M=(n,part,ans,tname,o)=>Q.push(Object.assign({n,part,type:'letter',ans:[ans],tname,ev:[]},o));
+const TWO=(a,b,part,key)=>{Q.push({n:a,part,type:'two',set:a,setKey:key,tname:'Choose TWO letters',ev:[]});Q.push({n:b,part,type:'two',set:a,setKey:key,tname:'Choose TWO letters',ev:[]});};
+
+/* ================= PART 1 ================= */
+P.push({id:1,name:'Part 1',short:'Notes + table',topic:'Local food shops',range:[1,10],
+ audioNote:'Two neighbours in an apartment block talk about shopping for food. The recording includes the reading time and pauses — press play once and listen.',
+ prep:[
+  {en:'<b>Q1–6</b> are directions. Listen for places and landmarks: <i>near the ___, cross the ___, look for the ___ outside</i>.',ar:'الأسئلة 1–6 عن الاتجاهات. استمع للأماكن والمعالم: near (قرب)، cross (اعبر)، outside (في الخارج).'},
+  {en:'<b>Q3</b> is a <b>time</b> before “pm”. The notes say it is <b>earlier than closing time</b>, so you will hear two times.',ar:'السؤال 3: <b>وقت</b> قبل pm. الملاحظات تقول إنه <b>قبل وقت الإغلاق</b>، لذلك ستسمع وقتين.'},
+  {en:'<b>Q4</b> is a <b>name</b> (capital letter). <b>Q6</b> “take a ___ minibus” → probably a <b>colour</b>.',ar:'السؤال 4: <b>اسم</b> (بحرف كبير). السؤال 6: غالبًا <b>لون</b>.'},
+  {en:'<b>Q7–10</b> are food words in a table. <b>Q7</b> is a type of seaweed — an unusual word, so it may be spelled out. Read each row: shop → to buy → other ideas.',ar:'الأسئلة 7–10 كلمات عن الطعام في جدول. السؤال 7 نوع من الأعشاب البحرية — كلمة غير مألوفة وقد تُتهجّى.'}],
+ words:[['harbour','ميناء'],['bridge','جسر'],['organic','عضوي'],['sign','لافتة'],['prawns','روبيان'],['seaweed','أعشاب بحرية'],['dessert','حلوى'],['spices','بهارات'],['tart','فطيرة حلوة']],
+ blocks:[
+  {k:'qhead',t:'Questions 1–6'},{k:'instr',en:'Complete the notes below. Write <b>ONE WORD AND/OR A NUMBER</b> for each answer.',ar:'أكمل الملاحظات أدناه. اكتب <b>كلمة واحدة و/أو رقمًا</b> لكل إجابة.'},
+  {k:'title',t:'Local food shops'},
+  {k:'sub',t:'Where to go'},
+  {k:'notes',items:['Kite Place – near the {{1}}']},
+  {k:'sub',t:'Fish market'},
+  {k:'notes',items:['cross the {{2}} and turn right','best to go before {{3}} pm, earlier than closing time']},
+  {k:'sub',t:'Organic shop'},
+  {k:'notes',items:['called {{4}}','below a restaurant in the large, grey building','look for the large {{5}} outside']},
+  {k:'sub',t:'Supermarket'},
+  {k:'notes',items:['take a {{6}} minibus, number 289']},
+  {k:'qhead',t:'Questions 7–10'},{k:'instr',en:'Complete the table below. Write <b>ONE WORD ONLY</b> for each answer.',ar:'أكمل الجدول أدناه. اكتب <b>كلمة واحدة فقط</b> لكل إجابة.'},
+  {k:'table',head:['Shopping','To buy','Other ideas'],rows:[
+   ['<b>Fish market</b>','a dozen prawns','a handful of {{7}} (type of seaweed)'],
+   ['<b>Organic shop</b>','beans and a {{8}} for dessert','spices and {{9}}'],
+   ['<b>Bakery</b>','a brown loaf','a {{10}} tart']]}
+ ]});
+const L1='ONE WORD AND/OR A NUMBER', L1b='ONE WORD ONLY', TC='Table completion';
+G(1,1,'harbour',{alt:['harbor'],show:'harbour / harbor',limitTxt:L1,printed:['the','near'],ev:["“…there are plenty of places to buy food in Kite Place. It’s the area by <mark>the harbour</mark>.”"],tip:"“Near the ___” = “the area by the ___”. Both spellings <b>harbour</b> (UK) and <b>harbor</b> (US) are accepted."});
+G(2,1,'bridge',{limitTxt:L1,printed:['the'],ev:["“It’s at the far end of Kite Place. So you have to go over <mark>the bridge</mark> and then it’s on the right.”"],tip:"“Cross” = “go over”."});
+G(3,1,'3.30',{alt:['3 30','three thirty','half past three','half three','3.30pm','3 30 pm'],show:'3.30 / three thirty / half past three',limitTxt:L1,printed:['pm','before'],ev:["“It <s>doesn’t close until 4</s>. But I’d recommend going earlier than that… As long as you get there by <mark>3.30</mark>, you should be fine.” — “<s>It’s only 11 now</s>…”"],tip:"Three times close together: 4 is closing time, 11 is the time now. “Earlier than closing time” → <b>3.30</b>.",near:[["4", "Trap! 4 is the <b>closing</b> time. The notes say go <b>earlier</b> → 3.30."], ["11", "Trap! 11 is the time <b>now</b>, not the advice."]]});
+G(4,1,'Rose',{limitTxt:L1,printed:['called'],ev:["“Now, what’s it called? It’s the name of a flower. I know, it’s <mark>Rose</mark>.”"],tip:"The clue “the name of a flower” prepares you for the answer."});
+G(5,1,'sign',{limitTxt:L1,printed:['the','large','outside'],ev:["“You can’t miss it. There’s also a big <mark>sign</mark> on the pavement, so you can look for that.”"],tip:"“Large ___ outside” = “a big ___ on the pavement”."});
+G(6,1,'purple',{limitTxt:L1,printed:['a','minibus'],ev:["“…there’s a minibus that goes to the supermarket if you need it. It’s <mark>purple</mark> and the number is 289.”"],tip:"The number 289 is already printed. The missing word is the <b>colour</b>."});
+G(7,1,'samphire',{limitTxt:L1b,printed:['of','handful'],tname:TC,ev:["“Have you ever tried <mark>samphire</mark>?” — “What’s that?” — “It’s a type of seaweed. I just ask for a handful… It’s <mark>S-A-M-P-H-I-R-E</mark>.”"],tip:"Unusual words are usually spelled out. Listen carefully for the <b>P-H</b>."});
+G(8,1,'melon',{limitTxt:L1b,printed:['a','for','dessert'],tname:TC,ev:["“How about <s>a mango</s>?” — “I’m not sure. They’re not always ripe. I’d prefer <mark>a melon</mark>. It’s bigger too.”"],tip:"Trap: the first fruit is rejected. “I’d prefer” gives the real choice.",near:[["mango", "Trap! Mango is suggested but rejected (“not always ripe”). She prefers a <b>melon</b>."]]});
+G(9,1,'coconut',{limitTxt:L1b,printed:['and','spices'],tname:TC,ev:["“The owner also sells a lot of spices there that you can put in a curry and things like <mark>coconut</mark>.”"],tip:"The word “spices” in the table is your signal — the answer follows it."});
+G(10,1,'strawberry',{limitTxt:L1b,printed:['a','tart'],tname:TC,ev:["“Like cakes? I love <s>chocolate cake</s>.” — “Well, not that. But they have a whole range of tarts. And the best are the <mark>strawberry</mark> ones.”"],tip:"“Well, not that” rejects chocolate. The answer goes before “tart”: <b>strawberry</b>.",near:[["chocolate", "Trap! “Well, not that” — they don’t have chocolate tarts. The best are <b>strawberry</b>."]]});
+
+/* ================= PART 2 ================= */
+P.push({id:2,name:'Part 2',short:'Matching + choose 2',topic:'Children’s book festival',range:[11,20],
+ audioNote:'A speaker on the radio talks about workshops at a children’s book festival and gives advice to parents about reading.',
+ prep:[
+  {en:'<b>Q11–16</b>: 8 pieces of information, 6 workshops — two letters are not used. The workshops come in order; the information does <b>not</b>.',ar:'الأسئلة 11–16: 8 معلومات و6 ورش عمل، أي أن حرفين لن يُستخدما. ورش العمل تأتي بالترتيب، أما المعلومات فلا.'},
+  {en:'Before listening, think of paraphrases: <i>disability</i> → special needs; <i>new relationships</i> → making friends; <i>unhappy feeling</i> → sadness, fear, worry; <i>specific age group</i> → “for 8- to 10-year-olds”.',ar:'قبل الاستماع، فكّر في المرادفات: disability = احتياجات خاصة، new relationships = تكوين صداقات، unhappy feeling = حزن أو خوف.'},
+  {en:'<b>Q17–20</b>: two “choose TWO” questions. The speaker may <b>mention</b> an option but say it is <b>not</b> a reason (“although…”, “that’s not why…”).',ar:'الأسئلة 17–20: قد يذكر المتحدث خيارًا ثم يقول إنه <b>ليس</b> السبب.'}],
+ words:[['workshop','ورشة عمل'],['disability','إعاقة'],['prize-winning','حائز على جائزة'],['awareness','وعي'],['illustrations','رسوم توضيحية'],['vocabulary','مفردات'],['audiobook','كتاب صوتي'],['librarian','أمين مكتبة'],['independently','باستقلالية']],
+ blocks:[
+  {k:'qhead',t:'Questions 11–16'},{k:'instr',en:'What information is given about each of the following festival workshops? Choose <b>SIX</b> answers from the box and write the correct letter, <b>A–H</b>, next to Questions 11–16.',ar:'ما المعلومات المذكورة عن كل ورشة عمل في المهرجان؟ اختر <b>ست</b> إجابات من المربع، واختر الحرف الصحيح <b>من A إلى H</b> للأسئلة 11–16.'},
+  {k:'box',t:'Information',opts:{A:'involves painting and drawing',B:'will be led by a prize-winning author',C:'is aimed at children with a disability',D:'involves a drama activity',E:'focuses on new relationships',F:'is aimed at a specific age group',G:'explores an unhappy feeling',H:'raises awareness of a particular culture'}},
+  {k:'sub',t:'Festival workshops'},
+  {k:'letters',letters:['A','B','C','D','E','F','G','H'],rows:[{n:11,label:'Superheroes'},{n:12,label:'Just do it'},{n:13,label:'Count on me'},{n:14,label:'Speak up'},{n:15,label:'Jump for joy'},{n:16,label:'Sticks and stones'}]},
+  {k:'qhead',t:'Questions 17 and 18'},{k:'instr',en:'Choose <b>TWO</b> letters, <b>A–E</b>.',ar:'اختر <b>حرفين</b> من <b>A إلى E</b>.'},
+  {k:'two',ns:[17,18],stem:'Which <b>TWO</b> reasons does the speaker give for recommending ‘Alive and Kicking’?',opts:{A:'It will appeal to both boys and girls.',B:'The author is well known.',C:'It has colourful illustrations.',D:'It is funny.',E:'It deals with an important topic.'}},
+  {k:'qhead',t:'Questions 19 and 20'},{k:'instr',en:'Choose <b>TWO</b> letters, <b>A–E</b>.',ar:'اختر <b>حرفين</b> من <b>A إلى E</b>.'},
+  {k:'two',ns:[19,20],stem:'Which <b>TWO</b> pieces of advice does the speaker give to parents about reading?',opts:{A:'Encourage children to write down new vocabulary.',B:'Allow children to listen to audio books.',C:'Get recommendations from librarians.',D:'Give children a choice about what they read.',E:'Only read aloud to children until they can read independently.'}}
+ ]});
+const MT='Matching';
+M(11,2,'C',MT,{ev:["“…there’s a very special event called Superheroes. This is a chance for <mark>deaf children</mark> to share their reading experiences with author Madeline Gordon, who is herself hearing impaired.”"],tip:"“Deaf children” = children with a <b>disability</b>. The author is not described as prize-winning."});M(12,2,'D',MT,{ev:["“Just Do It is a practical workshop led by the well-known <s>illustrator</s> Mark Kean… with an opportunity for aspiring actors to do some <mark>role play</mark>.”"],tip:"“Role play / actors” = <b>drama</b>. Trap A: the leader is an illustrator, but the workshop is not about painting or drawing."});M(13,2,'F',MT,{ev:["“Count on Me is an inspiring and entertaining look at the issues of <s>friendship</s> for <mark>13 to 14 year olds</mark>.”"],tip:"“13 to 14 year olds” = a <b>specific age group</b>. Trap E: it is about friendship, but <b>not new</b> relationships — they compare friendships in books with their own."});M(14,2,'G',MT,{ev:["“Speak Up is part of a series of workshops on the subject of mental health… encouraging children to describe situations where young people experience <mark>loneliness</mark>.”"],tip:"“Loneliness” = <b>an unhappy feeling</b>."});M(15,2,'B',MT,{ev:["“Jump for Joy… is the heartwarming, best-selling story by Nina Karan about a young girl’s trip to visit her relatives in <s>India</s>. It recently received <mark>the Gold Medal at the Waterford Awards</mark>. Nina will get children to celebrate the word ‘joy’…”"],tip:"“Received the Gold Medal” = <b>prize-winning</b>, and Nina leads the workshop. Trap H: India is mentioned, but this is not about learning a culture."});M(16,2,'H',MT,{ev:["“Sticks and Stones is the <s>beautifully illustrated</s> picture book… about a community who organise an African Caribbean festival <mark>to help local children learn about their Jamaican roots</mark>.”"],tip:"“Learn about their Jamaican roots” = <b>raises awareness of a particular culture</b>. “Illustrated” describes the book, not a painting activity."});
+TWO(17,18,2,['D','E']);TWO(19,20,2,['B','C']);
+
+/* ================= PART 3 ================= */
+P.push({id:3,name:'Part 3',short:'MCQ + flowchart',topic:'A science experiment for Year 12',range:[21,30],
+ audioNote:'Two teachers, Clare and Jake, plan a science experiment for Clare’s Year 12 students.',
+ prep:[
+  {en:'<b>Q21–25</b>: listen for feelings and reactions. Words like <i>but</i>, <i>the trouble is</i>, <i>I’m not sure</i> often lead to the answer.',ar:'الأسئلة 21–25: استمع للمشاعر وردود الفعل. كلمات مثل but و the trouble is غالبًا تقود إلى الإجابة.'},
+  {en:'<b>Q26–30 flowchart</b>: the steps come in order. Predict the type of word: “all the same ___” (a feature like age or size), “to prevent ___” (something mice might do).',ar:'<b>المخطط الانسيابي</b>: الخطوات بالترتيب. توقّع نوع الكلمة لكل فراغ.'},
+  {en:'There are 8 words in the box but only 5 gaps — three are not used. Some unused words (<i>size, water, colour</i>) will probably be mentioned as traps.',ar:'في المربع 8 كلمات و5 فراغات فقط. بعض الكلمات غير المستخدمة قد تُذكر كفخّ.'}],
+ words:[['Year 12','الصف الثاني عشر'],['diet','نظام غذائي'],['supplement','مكمّل غذائي'],['permission','إذن'],['genetic strain','سلالة جينية'],['cereal','حبوب الإفطار'],['weighing chamber','حجرة الوزن'],['calculations','حسابات'],['meaningful','ذو معنى']],
+ blocks:[
+  {k:'qhead',t:'Questions 21–25'},{k:'instr',en:'Choose the correct letter, <b>A, B or C</b>.',ar:'اختر الحرف الصحيح، <b>A أو B أو C</b>.'},
+  {k:'title',t:'Science experiment for Year 12 students'},
+  {k:'mcq',qs:[
+   {n:21,stem:'How does Clare feel about the students in her Year 12 science class?',opts:{A:'worried that they are not making progress',B:'challenged by their poor behaviour in class',C:'frustrated at their lack of interest in the subject'}},
+   {n:22,stem:'How does Jake react to Clare’s suggestion about an experiment based on children’s diet?',opts:{A:'He is concerned that the results might not be meaningful.',B:'He feels some of the data might be difficult to obtain.',C:'He suspects that the conclusions might be upsetting.'}},
+   {n:23,stem:'What problem do they agree may be involved in an experiment involving animals?',opts:{A:'Any results may not apply to humans.',B:'It may be complicated to get permission.',C:'Students may not be happy about animal experiments.'}},
+   {n:24,stem:'What question do they decide the experiment should address?',opts:{A:'Are mice capable of controlling their food intake?',B:'Does an increase in sugar lead to health problems?',C:'How much do supplements of different kinds affect health?'}},
+   {n:25,stem:'Clare might also consider doing another experiment involving',opts:{A:'other types of food supplement.',B:'different genetic strains of mice.',C:'varying amounts of exercise.'}}]},
+  {k:'qhead',t:'Questions 26–30'},{k:'instr',en:'Complete the flowchart below. Choose <b>FIVE</b> answers from the box and write the correct letter, <b>A–H</b>, next to Questions 26–30.',ar:'أكمل المخطط الانسيابي أدناه. اختر <b>خمس</b> إجابات من المربع، واختر الحرف الصحيح <b>من A إلى H</b> للأسئلة 26–30.'},
+  {k:'box',t:'Words',opts:{A:'size',B:'escape',C:'age',D:'water',E:'cereal',F:'calculations',G:'changes',H:'colour'}},
+  {k:'flow',letters:['A','B','C','D','E','F','G','H'],steps:[
+   {n:26,label:'Choose mice which are all the same ___.'},
+   {n:27,label:'Divide the mice into two groups, each with a different ___.'},
+   {n:28,label:'Put each group in a separate cage. Feed group A commercial mouse food. Feed group B the same, but also sugar contained in ___.'},
+   {n:29,label:'Take measurements using an electronic scale. Place them in a weighing chamber to prevent ___.'},
+   {n:30,label:'Do all necessary ___.'}]}
+ ]});
+const MC='Multiple choice', FC='Flowchart completion';
+M(21,3,'C',MC,{ev:["“Are they hard to control?” — “Well, <s>I don’t have discipline problems</s> as such. It’s just that <mark>they don’t seem to think that science has anything to do with their lives</mark>. It’s depressing. …<s>the results weren’t too bad</s>. But <mark>there’s no real engagement</mark>.”"],tip:"B is rejected (“no discipline problems”), A is rejected (“results weren’t too bad”). “No real engagement… depressing” = <b>frustrated at their lack of interest</b>."});M(22,3,'B',MC,{ev:["Jake: “…you’d also need to have access to the children’s <mark>medical records</mark>, and I don’t think people would be happy about that… If you could get the right data, <s>the conclusions might be significant</s>, but <mark>I suspect it’s not going to be easy</mark>.”"],tip:"“Not going to be easy” to get the data = <b>difficult to obtain</b>. Trap A: Jake says the conclusions <b>might be significant</b> (meaningful)."});M(23,3,'A',MC,{ev:["Clare: “If… a particular diet affects the health of animals, <mark>the same thing wouldn’t necessarily be true for people</mark>, would it?” — Jake: “<mark>No, that’s true.</mark>”", "“Would I have to get permission…?” — “Yes… but <s>it’s quite straightforward</s>.”"],tip:"The stem says <b>agree</b>. Jake answers “That’s true” only for A. Permission is “straightforward” (not B), and Jake says the animals don’t have to be harmed (not C)."});M(24,3,'A',MC,{ev:["“<s>Maybe we could look at food supplements</s>… That might be rather broad… In fact, maybe the focus could be on <mark>whether mice can control their own diet</mark>.” — “Exactly. Do they eat it or do they decide to leave it?”"],tip:"C is rejected as “rather broad”. “Control their own diet” = <b>control their food intake</b>."});M(25,3,'C',MC,{ev:["Jake: “…you could give some of the mice the chance to be <mark>more active, running on a wheel</mark>…” — Clare: “<s>Or I could… change the type of food… or use mice with a different genetic structure</s>. But I think <mark>your idea would be more interesting. I might think about that some more.</mark>”"],tip:"Clare mentions A and B herself, but then chooses Jake’s idea: more active = <b>varying amounts of exercise</b>."});
+M(26,3,'C',FC,{ev:["“I’d say about 12. And <mark>all young ones, not a mixture of old and young</mark>.”"],tip:"“Young, not old and young” = the same <b>age</b>. 12 is a number of mice, not a size."});M(27,3,'H',FC,{ev:["“I need <s>two groups of equal sizes</s>… And how would I tell them apart?… You could use <mark>food colouring</mark>. That wouldn’t hurt them.”"],tip:"Trap A: the groups are the same <b>size</b>. The thing that is <b>different</b> for each group is the <b>colour</b>.",near:[]});M(28,3,'E',FC,{ev:["“Would you just give them straight sugar?” — “It might be better to give them something like <mark>cereal</mark> with it.”"]});M(29,3,'B',FC,{ev:["“…you need something called a weighing chamber <mark>to stop the mice from running away</mark>.”"],tip:"“Prevent ___” = “stop… from running away” → <b>escape</b>."});M(30,3,'F',FC,{ev:["“…once we’ve measured the weight gain of each mouse we can <mark>work out the average</mark> for each group as well as <mark>the standard deviation</mark>…”"],tip:"Working out averages and standard deviation = <b>calculations</b>. “Weight gain” sounds like “changes”, but that is what they measure, not the final step."});
+
+/* ================= PART 4 ================= */
+P.push({id:4,name:'Part 4',short:'Notes',topic:'Microplastics',range:[31,40],
+ audioNote:'A lecture about microplastics and a study of their effect on soil. There is no break in the middle of Part 4.',
+ prep:[
+  {en:'Follow the headings: <i>Where they come from → Effects → A study in the soil → What the study found → Conclusions</i>.',ar:'تابع العناوين: المصدر → التأثيرات → الدراسة → النتائج → الاستنتاجات.'},
+  {en:'<b>ONE WORD ONLY</b>. Predict: <b>Q31</b> a type of product with fibres, <b>Q32</b> a body part of animals, <b>Q33</b> a food item, <b>Q34</b> a product used on your body, <b>Q38</b> “___ loss”.',ar:'<b>كلمة واحدة فقط</b>. توقّع: 31 منتج فيه ألياف، 32 جزء من جسم الحيوان، 33 طعام، 34 منتج للعناية الشخصية.'},
+  {en:'Several gaps need a <b>plural</b> (mouths, fertilisers, nutrients). Check the -s.',ar:'بعض الفراغات تحتاج <b>صيغة الجمع</b>. تحقّق من حرف s.'}],
+ words:[['microplastics','جسيمات بلاستيكية دقيقة'],['fibres','ألياف'],['tyres','إطارات'],['digestive system','الجهاز الهضمي'],['food chain','السلسلة الغذائية'],['fertilisers','أسمدة'],['earthworms','ديدان الأرض'],['nutrients','مغذّيات'],['germinate','ينبت'],['ecosystem','نظام بيئي']],
+ blocks:[
+  {k:'qhead',t:'Questions 31–40'},{k:'instr',en:'Complete the notes below. Write <b>ONE WORD ONLY</b> for each answer.',ar:'أكمل الملاحظات أدناه. اكتب <b>كلمة واحدة فقط</b> لكل إجابة.'},
+  {k:'title',t:'Microplastics'},
+  {k:'sub',t:'Where microplastics come from'},
+  {k:'notes',items:['fibres from some {{31}}','the breakdown of large pieces of plastic','waste from industry','the action of vehicle tyres on roads']},
+  {k:'sub',t:'Effects of microplastics'},
+  {k:'notes',items:['They cause injuries to the {{32}} of wildlife and affect their digestive systems.','They enter the food chain, e.g. in bottled and tap water, {{33}} and seafood.','They may not affect human health, but they are already banned in skin cleaning products and {{34}} in some countries.','Microplastics enter the soil through the air, rain and {{35}}.']},
+  {k:'sub',t:'Microplastics in the soil – a study by Anglia Ruskin University'},
+  {k:'notes',items:['Earthworms are important because they add {{36}} to the soil.','The study aimed to find whether microplastics in earthworms affect the {{37}} of plants.']},
+  {k:'sub',t:'The study found that microplastics caused'},
+  {k:'notes',items:['{{38}} loss in earthworms','fewer seeds to germinate','a rise in the level of {{39}} in the soil']},
+  {k:'sub',t:'The study concluded'},
+  {k:'notes',items:['soil should be seen as an important natural process','changes to soil damage both ecosystems and {{40}}']}
+ ]});
+const L4='ONE WORD ONLY';
+G(31,4,'clothing',{limitTxt:L4,printed:['some','from'],ev:["“Threads and microfibres detach from synthetic <mark>clothing</mark> every time they’re put in a washing machine…”"],tip:"“Fibres from some ___” = “microfibres… from synthetic clothing”.",near:[["clothes", "The speaker says <b>clothing</b>. In the exam, use the exact word you hear."]]});
+G(32,4,'mouths',{limitTxt:L4,printed:['the','of'],ev:["“…microplastics harm small creatures in a variety of ways, such as by damaging their <mark>mouths</mark> or by impairing their ability to feed, for example when microplastics get lodged in their digestive system.”"],tip:"“Injuries to” = “damaging”. Plural: <b>mouths</b>."});
+G(33,4,'salt',{limitTxt:L4,printed:['and'],ev:["“…including bottled water as well as in water that comes direct from the tap. What’s more, <mark>salt</mark> and many kinds of seafood have also been found to contain microplastics.”"],tip:"The notes list the items in the same order: bottled water → tap water → <b>salt</b> → seafood."});
+G(34,4,'toothpaste',{alt:['tooth paste'],limitTxt:L4,printed:['and'],ev:["“…legislation which prevents manufacturers from adding plastic microbeads to <s>shower gels</s>, <s>facial cleansers</s> and <mark>toothpaste</mark>.”"],tip:"“Skin cleaning products” = shower gels and facial cleansers (already in the notes). The new item after “and” is <b>toothpaste</b>."});
+G(35,4,'fertilisers',{alt:['fertilizers'],show:'fertilisers / fertilizers',limitTxt:L4,printed:['and'],ev:["“…they are carried in the air and deposited in the soil by rain. What’s more, many of the <mark>fertilisers</mark> used by both farmers and gardeners contain microplastics.”"],tip:"Both spellings <b>fertilisers</b> (UK) and <b>fertilizers</b> (US) are accepted. Remember the plural -s."});
+G(36,4,'nutrients',{limitTxt:L4,printed:['add','to'],ev:["“By feeding on soil, they mix <mark>nutrients</mark> into it, thereby making it more fertile.”"],tip:"“Add ___ to the soil” = “mix ___ into it”."});
+G(37,4,'growth',{limitTxt:L4,printed:['the','of'],ev:["“…whether the introduction of microplastics… would impact <s>soil quality</s> and ultimately inhibit <mark>plant growth</mark>.”"],tip:"The notes say “the ___ <b>of plants</b>” → plant growth = the <b>growth</b> of plants."});
+G(38,4,'weight',{limitTxt:L4,printed:['loss'],ev:["“The result was that <mark>the worms lost weight</mark> rapidly.”"],tip:"“___ loss in earthworms” = “the worms lost ___”."});
+G(39,4,'acid',{limitTxt:L4,printed:['of','the','level'],ev:["“The team also discovered that there was <mark>an increase in the amount of acid</mark> found in the soil…”"],tip:"“A rise in the level of” = “an increase in the amount of”."});
+G(40,4,'society',{limitTxt:L4,printed:['and','both'],ev:["“…when soil becomes impoverished by the presence of microplastics, not only ecosystems, but also <mark>the whole of society</mark> are negatively impacted.”"],tip:"“Both ___ and ___” = “not only… but also…”."});
+Object.assign(Q.find(q=>q.n==17),{ev:["“It deals with <mark>a serious issue of immigration</mark>…” → <b>E</b>", "“Usually, books like this are quite sad, but this one actually <mark>made me cry with laughter</mark>.” → <b>D</b>", "“<s>You won’t have heard of the writer</s> as it’s her first book” (not B) · “simple but hilarious <s>black and white</s> stick drawings” (not C)"],tip:"Listen for the words that <b>cancel</b> an option: “you won’t have heard of” cancels <i>well known</i>; “black and white” cancels <i>colourful</i>. Boys and girls (A) is never mentioned."});
+Object.assign(Q.find(q=>q.n==19),{ev:["“If you don’t have time for this, then <mark>let them listen to audiobooks</mark>.” → <b>B</b>", "“You can introduce new authors and genres to them. <mark>Librarians should be able to help you with this.</mark>” → <b>C</b>", "“A lot of parents <s>give up reading aloud</s> to their children as soon as they learn to read independently, but <s>this is a mistake</s>.” → E is the opposite of her advice."],tip:"Trap A: the <b>book</b> has new words at the end of each page — that is not advice to parents. Trap E: she says stopping is a <b>mistake</b>."});
+})();
+
+</script>
+<script>
+(function(){
+const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
+const APPKEY='ielts-listening-test-10c';
+const S={ans:{},marked:{},plays:{1:0,2:0,3:0,4:0},name:'',tab:1};
+const QBY={}; DATA.questions.forEach(q=>{QBY[q.n]=q;});
+const HARMLESS=['a','an','the','of','some','my','their','its','to','in','for','and'];
+
+/* ---------- normalising ---------- */
+const NUMW={zero:0,one:1,two:2,three:3,four:4,five:5,six:6,seven:7,eight:8,nine:9,ten:10,eleven:11,twelve:12,thirteen:13,fourteen:14,fifteen:15,sixteen:16,seventeen:17,eighteen:18,nineteen:19,twenty:20,thirty:30,forty:40,fifty:50,sixty:60,seventy:70,eighty:80,ninety:90};
+function norm(s){
+  s=(s||'').toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g,'');
+  s=s.replace(/[£$€]/g,' ').replace(/\b(pounds?|gbp|pence|p)\b/g,' ');
+  s=s.replace(/&/g,' and ').replace(/[-–—\/]/g,' ');
+  s=s.replace(/(\d),(\d{3})/g,'$1$2');
+  s=s.replace(/[^a-z0-9.\s]/g,' ').replace(/\.(?!\d)/g,' ').replace(/(^|\s)\.(\d)/g,'$1$2');
+  s=s.replace(/\s+/g,' ').trim();
+  // number words -> digits (e.g. "sixty nine" -> 69)
+  s=s.replace(/\b(twenty|thirty|forty|fifty|sixty|seventy|eighty|ninety) (one|two|three|four|five|six|seven|eight|nine)\b/g,(m,a,b)=>String(NUMW[a]+NUMW[b]));
+  s=s.split(' ').map(w=>NUMW[w]!==undefined?String(NUMW[w]):w).join(' ');
+  return s;
+}
+const words=s=>norm(s).split(' ').filter(Boolean);
+
+/* ---------- marking ---------- */
+// returns {st:'g'|'a'|'r'|'e', msg}
+function judgeGap(q,raw){
+  const v=norm(raw);
+  if(!v) return {st:'e',msg:'No answer.'};
+  const acc=q.ans.concat(q.alt||[]).map(norm);
+  if(acc.includes(v)) return {st:'g'};
+  const tok=v.split(' ');
+  for(const a of acc){
+    const at=a.split(' ');
+    for(let i=0;i+at.length<=tok.length;i++){
+      if(at.every((w,j)=>tok[i+j]===w)){
+        const rest=tok.slice(0,i).concat(tok.slice(i+at.length));
+        const printed=(q.printed||[]).map(norm).join(' ').split(' ');
+        if(rest.every(w=>HARMLESS.includes(w)||printed.includes(w)))
+          return {st:'a',msg:`Accepted here — but in the exam write only <b>${q.ans[0]}</b>. Extra words can break the word limit.`};
+        return {st:'r',msg:`You have the key word, but the extra word(s) “${rest.join(' ')}” go over the word limit (${q.limitTxt}). In the exam this is marked wrong.`};
+      }
+    }
+  }
+  if(q.near){for(const [w,m] of q.near){ if(norm(w)===v) return {st:'r',msg:m}; }}
+  for(const a of acc){ if(v===a+'s'||v===a+'es'||a===v+'s'||a===v+'es') return {st:'r',msg:`Singular or plural matters. The answer is <b>${q.ans[0]}</b> — check the final <b>-s</b>.`}; }
+  // spelling close?
+  const best=acc.reduce((b,a)=>Math.min(b,lev(a,v)),99);
+  if(best<=2 && v.length>3) return {st:'r',msg:'Very close — check your spelling. In IELTS, a spelling mistake loses the mark.'};
+  return {st:'r'};
+}
+function lev(a,b){const m=[];for(let i=0;i<=a.length;i++){m[i]=[i];}for(let j=0;j<=b.length;j++)m[0][j]=j;
+  for(let i=1;i<=a.length;i++)for(let j=1;j<=b.length;j++)m[i][j]=Math.min(m[i-1][j]+1,m[i][j-1]+1,m[i-1][j-1]+(a[i-1]===b[j-1]?0:1));return m[a.length][b.length];}
+function judge(n){
+  const q=QBY[n];
+  if(q.type==='gap') return judgeGap(q,S.ans[n]);
+  if(q.type==='two'){
+    const pick=S.ans['t'+q.set]||[]; const key=q.setKey;
+    const hits=pick.filter(x=>key.includes(x)).length;
+    const idx=q.n===q.set?0:1; // first or second question of the pair
+    if(!pick.length) return {st:'e',msg:'No answer.'};
+    return {st:hits>idx?'g':'r'};
+  }
+  const v=S.ans[n]; if(!v) return {st:'e',msg:'No answer.'};
+  return {st:v===q.ans[0]?'g':'r'};
+}
+function isAnswered(n){const q=QBY[n]; if(q.type==='two'){const p=S.ans['t'+q.set]||[];return p.length>(q.n===q.set?0:1);} return !!(S.ans[n]&&String(S.ans[n]).trim());}
+const partQs=p=>DATA.questions.filter(q=>q.part===p);
+function partScore(p){return partQs(p).reduce((t,q)=>t+(['g','a'].includes(judge(q.n).st)?1:0),0);}
+
+/* ---------- rendering ---------- */
+function esc(s){return String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));}
+function gapHTML(n){const q=QBY[n];return `<span class="gap" id="w${n}"><span class="qn">${n}</span><input id="q${n}" data-n="${n}" autocomplete="off" autocapitalize="off" spellcheck="false" aria-label="Question ${n}"></span>`;}
+function fillGaps(html){return html.replace(/\{\{(\d+)\}\}/g,(m,n)=>gapHTML(+n));}
+function reviewSlot(n){return `<div class="review" id="r${n}"></div>`;}
+function instr(b){return `<div class="instr">${b.en}<div class="ar">${b.ar}</div></div>`;}
+function renderBlock(b){
+  switch(b.k){
+    case 'qhead': return `<div class="qhead">${b.t}</div>`;
+    case 'instr': return instr(b);
+    case 'title': return `<div class="secttl">${b.t}</div>`;
+    case 'sub': return `<div class="subh">${b.t}</div>`;
+    case 'notes': return `<ul class="notes">${b.items.map(it=>{const dash=it.startsWith('- ');const t=dash?it.slice(2):it;const ns=[...t.matchAll(/\{\{(\d+)\}\}/g)].map(m=>+m[1]);return `<li class="${dash?'dash':''}">${fillGaps(t)}${ns.map(reviewSlot).join('')}</li>`;}).join('')}</ul>`;
+    case 'mcq': return b.qs.map(q=>`<div class="mcq" id="w${q.n}"><div class="stem"><span class="qn">${q.n}</span><span>${q.stem}</span></div><div class="opts" data-n="${q.n}">${Object.entries(q.opts).map(([L,t])=>`<button class="opt" data-n="${q.n}" data-v="${L}"><span class="L">${L}</span><span>${t}</span></button>`).join('')}</div>${reviewSlot(q.n)}</div>`).join('');
+    case 'two': return `<div class="mcq" id="w${b.ns[0]}"><div class="stem"><span class="qn">${b.ns[0]}–${b.ns[1]}</span><span>${b.stem}</span></div><div class="opts two" data-set="${b.ns[0]}">${Object.entries(b.opts).map(([L,t])=>`<button class="opt" data-set="${b.ns[0]}" data-v="${L}"><span class="L">${L}</span><span>${t}</span></button>`).join('')}</div><div id="w${b.ns[1]}"></div>${reviewSlot(b.ns[0])}</div>`;
+    case 'map': return `<div class="mapwrap" id="mapwrap">${DATA.mapSVG}</div><div class="mapnote">Tap the map to enlarge it.</div>`;
+    case 'table': { const ns=[]; const cell=c=>{[...c.matchAll(/\{\{(\d+)\}\}/g)].forEach(m=>ns.push(+m[1]));return fillGaps(c);}; const body=b.rows.map(r=>`<tr>${r.map(c=>`<td>${cell(c)}</td>`).join('')}</tr>`).join(''); return `${b.t?`<div class="secttl" style="font-size:1.1rem">${b.t}</div>`:''}<div class="tblwrap"><table class="qtable"><tr>${b.head.map(h=>`<th>${h}</th>`).join('')}</tr>${body}</table></div>${ns.map(reviewSlot).join('')}`; }
+    case 'flow': return `<div class="flow">${b.steps.map((st,i)=>`${i?'<div class="flowarrow">↓</div>':''}<div class="flowstep" id="w${st.n}"><span class="qn">${st.n}</span><span class="lab">${st.label}</span><span class="lchips" data-n="${st.n}">${b.letters.map(L=>`<button class="lchip" data-n="${st.n}" data-v="${L}">${L}</button>`).join('')}</span><div style="flex-basis:100%">${reviewSlot(st.n)}</div></div>`).join('')}</div>`;
+    case 'box': return `<div class="box"><div class="bt">${b.t}</div>${Object.entries(b.opts).map(([L,t])=>`<div class="o"><b>${L}</b>${t}</div>`).join('')}</div>`;
+    case 'letters': return b.rows.map(r=>`<div class="lrow" id="w${r.n}"><span class="qn">${r.n}</span><span class="lab">${r.label}</span><span class="lchips" data-n="${r.n}">${b.letters.map(L=>`<button class="lchip" data-n="${r.n}" data-v="${L}">${L}</button>`).join('')}</span><div style="flex-basis:100%">${reviewSlot(r.n)}</div></div>`).join('');
+  }
+  return '';
+}
+function render(){
+  const tabs=DATA.parts.map(p=>`<button class="tab" data-tab="${p.id}">${p.name}<span class="badge" id="tb${p.id}" hidden></span><small>Q${p.range[0]}–${p.range[1]}</small></button>`).join('')+`<button class="tab" data-tab="R">Results<small>Band &amp; certificate</small></button>`;
+  $('#tabs').innerHTML=tabs;
+  let html='';
+  DATA.parts.forEach(p=>{
+    html+=`<section class="part" id="part${p.id}">
+      <div class="parthead"><h2>${p.name}: ${p.topic}</h2><div class="qr">Questions ${p.range[0]}–${p.range[1]}</div></div>
+      <div class="card audiocard"><div class="row"><div class="ico"><svg width="24" height="24" viewBox="0 0 24 24" fill="#3d1023"><path d="M3 10v4h4l5 4V6L7 10H3zm13.5 2A4.5 4.5 0 0 0 14 8v8a4.5 4.5 0 0 0 2.5-4zM14 3.2v2.1a7 7 0 0 1 0 13.4v2.1a9 9 0 0 0 0-17.6z"/></svg></div>
+        <audio id="au${p.id}" controls preload="metadata" data-part="${p.id}"></audio><span class="plays" id="pl${p.id}">Played 0×</span></div>
+        <div class="meta">${p.audioNote}</div><div class="err" id="ae${p.id}">⚠️ Recording not found. Make sure the <b>audio</b> folder (with part${p.id}.mp3) is next to index.html.</div></div>
+      <details class="prep"><summary>Before you listen — predict &amp; prepare <span class="ar" style="display:none"></span></summary><div class="prepbody">
+        <ul>${p.prep.map(x=>`<li>${x.en}<div class="ar">${x.ar}</div></li>`).join('')}</ul>
+        <b>Key words</b><div class="chips">${p.words.map(([w,a])=>`<span class="chip">${w}<span class="ar">${a}</span></span>`).join('')}</div>
+      </div></details>
+      <div class="scorebar" id="sb${p.id}"><span>Part ${p.id} score</span><span class="big" id="sbv${p.id}"></span><span class="legend"><span class="g">correct</span><span class="a">accepted (but write less)</span><span class="r">wrong / blank</span></span></div>
+      <div class="card qcard" id="qc${p.id}">${p.blocks.map(renderBlock).join('')}</div>
+      <div class="actions"><button class="btn alt" data-retry="${p.id}" hidden>✎ Change my answers</button><button class="btn main" data-mark="${p.id}">✓ Check Part ${p.id}</button>${p.id<4?`<button class="btn dark" data-go="${p.id+1}">Next: Part ${p.id+1} →</button>`:`<button class="btn dark" data-go="R">See my results →</button>`}</div>
+    </section>`;
+  });
+  html+=`<section class="part" id="partR"></section>`;
+  $('#main').innerHTML=html;
+  // dock
+  $('#dock').innerHTML=DATA.parts.map(p=>`<div class="dgrp" data-p="${p.id}"><span class="pl">P${p.id}</span>${partQs(p.id).map(q=>`<button class="dq" id="d${q.n}" data-jump="${q.n}">${q.n}</button>`).join('')}</div>`).join('');
+  setupAudio();
+}
+
+/* ---------- audio ---------- */
+function setupAudio(){
+  DATA.parts.forEach(p=>{
+    const a=$('#au'+p.id); const paths=[`audio/part${p.id}.mp3`,`part${p.id}.mp3`]; let i=0;
+    a.src=paths[0];
+    a.addEventListener('error',()=>{i++; if(i<paths.length){a.src=paths[i];a.load();} else $('#ae'+p.id).style.display='block';});
+    a.addEventListener('play',()=>{ if(a.currentTime<1.5){S.plays[p.id]++;updPlays();save();} });
+  });
+}
+function updPlays(){DATA.parts.forEach(p=>{$('#pl'+p.id).textContent=`Played ${S.plays[p.id]}×`;});}
+
+/* ---------- state sync ---------- */
+function paint(){
+  DATA.questions.forEach(q=>{
+    if(q.type==='gap'){const el=$('#q'+q.n); if(el && el.value!==(S.ans[q.n]||'')) el.value=S.ans[q.n]||'';}
+    else if(q.type==='two'){ if(q.n===q.set){ const pick=S.ans['t'+q.set]||[]; $$(`.opt[data-set="${q.set}"]`).forEach(b=>b.classList.toggle('sel',pick.includes(b.dataset.v))); } }
+    else { $$(`[data-n="${q.n}"].opt, [data-n="${q.n}"].lchip`).forEach(b=>b.classList.toggle('sel',b.dataset.v===S.ans[q.n])); }
+  });
+  const done=DATA.questions.filter(q=>isAnswered(q.n)).length;
+  $('#prog').style.width=(done/40*100)+'%';
+  DATA.questions.forEach(q=>{const d=$('#d'+q.n); d.className='dq'; if(S.marked[q.part]){const st=judge(q.n).st; d.classList.add(st==='g'?'ok':st==='a'?'amb':'bad');} else if(isAnswered(q.n)) d.classList.add('ans');});
+  DATA.parts.forEach(p=>{
+    const m=!!S.marked[p.id]; const qc=$('#qc'+p.id);
+    qc.classList.toggle('lockd',m);
+    $$(`#qc${p.id} input`).forEach(i=>i.readOnly=m);
+    $(`[data-retry="${p.id}"]`).hidden=!m; $(`[data-mark="${p.id}"]`).hidden=m;
+    $('#sb'+p.id).classList.toggle('on',m);
+    const tb=$('#tb'+p.id);
+    if(m){const sc=partScore(p.id); $('#sbv'+p.id).textContent=`${sc} / 10`; tb.hidden=false; tb.textContent=sc+'/10';} else tb.hidden=true;
+    partQs(p.id).forEach(q=>showReview(q,m));
+  });
+}
+function showReview(q,on){
+  const r=$('#r'+q.n);
+  // clear marks
+  const clear=els=>els.forEach(e=>e&&e.classList.remove('ok','bad','amb','key'));
+  if(q.type==='gap') clear([$('#q'+q.n)]);
+  else if(q.type==='two'){ if(q.n===q.set) clear($$(`.opt[data-set="${q.set}"]`)); }
+  else clear($$(`[data-n="${q.n}"].opt, [data-n="${q.n}"].lchip`));
+  if(!on){ if(r){r.classList.remove('on');r.innerHTML='';} return; }
+  const j=judge(q.n);
+  if(q.type==='gap'){ $('#q'+q.n).classList.add(j.st==='g'?'ok':j.st==='a'?'amb':'bad'); }
+  else if(q.type==='two'){
+    if(q.n!==q.set) return;
+    const pick=S.ans['t'+q.set]||[];
+    $$(`.opt[data-set="${q.set}"]`).forEach(b=>{const v=b.dataset.v; if(pick.includes(v)) b.classList.add(q.setKey.includes(v)?'ok':'bad'); else if(q.setKey.includes(v)) b.classList.add('key');});
+    const hits=pick.filter(x=>q.setKey.includes(x)).length;
+    r.innerHTML=`<div class="verdict ${hits===2?'g':hits?'a':'r'}">${hits} / 2 marks — the answers are <b>${q.setKey.join(' and ')}</b> (in either order).</div>${q.ev.map(e=>`<div class="ev">${e}</div>`).join('')}${q.tip?`<div class="tip">${q.tip}</div>`:''}`;
+    r.classList.add('on'); return;
+  } else {
+    const v=S.ans[q.n];
+    $$(`[data-n="${q.n}"].opt, [data-n="${q.n}"].lchip`).forEach(b=>{ if(b.dataset.v===v) b.classList.add(v===q.ans[0]?'ok':'bad'); else if(b.dataset.v===q.ans[0]) b.classList.add('key'); });
+  }
+  const yours=q.type==='gap'?(S.ans[q.n]||'—'):(S.ans[q.n]||'—');
+  const head=j.st==='g'?`<span class="verdict g">✓ Correct</span>`:j.st==='a'?`<span class="verdict a">◐ Accepted</span>`:`<span class="verdict r">✗ ${j.st==='e'?'No answer':'Not correct'}</span> — you wrote <b>${esc(yours)}</b>`;
+  r.innerHTML=`${head} · Answer: <b>${q.show||q.ans[0]}</b>${j.msg&&j.st!=='e'?`<div>${j.msg}</div>`:''}${q.ev.map(e=>`<div class="ev">${e}</div>`).join('')}${q.tip?`<div class="tip">${q.tip}</div>`:''}`;
+  r.classList.add('on');
+}
+
+/* ---------- results ---------- */
+const BAND=[[39,9],[37,8.5],[35,8],[32,7.5],[30,7],[26,6.5],[23,6],[18,5.5],[16,5],[13,4.5],[10,4],[8,3.5],[6,3],[4,2.5],[0,0]];
+const band=sc=>BAND.find(([m])=>sc>=m)[1];
+function results(){
+  const el=$('#partR'); const markedAll=DATA.parts.every(p=>S.marked[p.id]);
+  const total=DATA.parts.reduce((t,p)=>t+(S.marked[p.id]?partScore(p.id):0),0);
+  const nMarked=DATA.parts.filter(p=>S.marked[p.id]).length;
+  if(!nMarked){el.innerHTML=`<div class="card"><h2 style="margin-top:0">Your results</h2><p>Check at least one part first. Use the <b>✓ Check Part</b> button at the bottom of each part.</p><div class="ar">تحقق من جزء واحد على الأقل أولاً باستخدام زر "Check Part" في أسفل كل جزء.</div></div>`;return;}
+  const b=band(total);
+  const types={};DATA.questions.forEach(q=>{ if(!S.marked[q.part]) return; const t=types[q.tname]||(types[q.tname]={c:0,n:0}); t.n++; if(['g','a'].includes(judge(q.n).st)) t.c++;});
+  const typeBars=Object.entries(types).map(([k,v])=>{const pc=v.c/v.n*100;return `<div class="b"><span>${k}</span><span class="t"><i class="${pc>=70?'hi':pc<40?'lo':''}" style="width:${pc}%"></i></span><b>${v.c}/${v.n}</b></div>`;}).join('');
+  const partBars=DATA.parts.map(p=>{const m=S.marked[p.id];const sc=m?partScore(p.id):0;return `<div class="b"><span>${p.name} · ${p.short}</span><span class="t"><i class="${sc>=7?'hi':sc<4?'lo':''}" style="width:${m?sc*10:0}%"></i></span><b>${m?sc+'/10':'—'}</b></div>`;}).join('');
+  const weakest=Object.entries(types).sort((a,b)=>a[1].c/a[1].n-b[1].c/b[1].n)[0];
+  const amber=DATA.questions.filter(q=>S.marked[q.part]&&judge(q.n).st==='a').map(q=>q.n);
+  const blanks=DATA.questions.filter(q=>S.marked[q.part]&&judge(q.n).st==='e').length;
+  const tips=[];
+  if(weakest) tips.push(`Your weakest question type was <b>${weakest[0]}</b> (${weakest[1].c}/${weakest[1].n}). Go back to those questions and read the evidence quotes under each one.`);
+  if(amber.length) tips.push(`Questions ${amber.join(', ')} were accepted here but used extra words. In the real test, write <b>only</b> the missing word(s).`);
+  if(blanks) tips.push(`You left ${blanks} blank. In IELTS there is no penalty for a wrong answer — always write something.`);
+  tips.push(`Target for Band 6: <b>23 / 40</b>. Band 6.5: <b>26 / 40</b>.`);
+  const rows=[[39,40,'9'],[37,38,'8.5'],[35,36,'8'],[32,34,'7.5'],[30,31,'7'],[26,29,'6.5'],[23,25,'6'],[18,22,'5.5'],[16,17,'5'],[13,15,'4.5'],[10,12,'4']];
+  el.innerHTML=`<div class="parthead"><h2>Your results</h2><div class="qr">${markedAll?'All four parts checked':`${nMarked} of 4 parts checked — the band is an estimate from the parts checked so far`}</div></div>
+  <div class="resgrid"><div class="stat"><div class="v">${total}<span style="font-size:1.1rem;color:var(--muted)"> / ${nMarked*10}</span></div><div class="k">Raw score</div></div>
+  <div class="stat band"><div class="v">${markedAll?b:'—'}</div><div class="k" style="color:#2f3d05">${markedAll?'Estimated band':'Band shows when all parts are checked'}</div></div>
+  <div class="stat"><div class="v">${Object.values(S.plays).reduce((a,b)=>a+b,0)}</div><div class="k">Times you pressed play</div></div></div>
+  <div class="card"><b>Score by part</b><div class="bars">${partBars}</div></div>
+  <div class="card"><b>Score by question type</b><div class="bars">${typeBars}</div></div>
+  <div class="card"><b>What to do next</b><ul class="advice">${tips.map(t=>`<li>${t}</li>`).join('')}</ul>
+   <details><summary style="cursor:pointer;color:var(--pri);font-weight:600">IELTS Listening band table</summary><table class="bandtbl"><tr><th>Score</th>${rows.map(r=>`<td class="${markedAll&&total>=r[0]&&total<=r[1]?'me':''}">${r[0]}–${r[1]}</td>`).join('')}</tr><tr><th>Band</th>${rows.map(r=>`<td class="${markedAll&&total>=r[0]&&total<=r[1]?'me':''}">${r[2]}</td>`).join('')}</tr></table></details></div>
+  <div class="card"><b>Certificate</b>${markedAll?`<p style="margin:6px 0 10px">Type your name to create your certificate, then print it or save it as a PDF.</p><div class="namebox"><input id="certName" placeholder="Your full name" value="${esc(S.name)}"><button class="btn main" id="mkCert">Create certificate</button><button class="btn alt" id="prCert">🖨 Print / PDF</button></div>`:`<p>Check all four parts to unlock your certificate.</p>`}
+   <div class="cert" id="cert"><div class="ck">IELTS Listening · Practice Test 10C</div><h3>${b>=6?'Certificate of Achievement':'Certificate of Completion'}</h3><div>This certifies that</div><div class="nm" id="certNm"></div><div class="sc">completed IELTS Listening Practice Test 10C (Cambridge 19, Test 3)<br>with a score of <b>${total} / 40</b></div><div class="seal">Band<br>${b}</div><div class="by" id="certDate"></div><div class="by">Designed by: Nazila Motahari</div></div></div>`;
+  if(markedAll){
+    $('#mkCert').onclick=()=>{S.name=$('#certName').value.trim(); if(!S.name){toast('Please type your name first.');return;} $('#certNm').textContent=S.name; $('#certDate').textContent=new Date().toLocaleDateString('en-GB',{day:'numeric',month:'long',year:'numeric'}); $('#cert').classList.add('on'); save(); $('#cert').scrollIntoView({behavior:'smooth',block:'center'}); if(b>=6) confetti();};
+    $('#prCert').onclick=()=>{ if(!$('#cert').classList.contains('on')) $('#mkCert').click(); if(S.name) setTimeout(()=>window.print(),300);};
+    if(S.name){$('#certNm').textContent=S.name;$('#certDate').textContent=new Date().toLocaleDateString('en-GB',{day:'numeric',month:'long',year:'numeric'});$('#cert').classList.add('on');}
+  }
+}
+
+/* ---------- navigation ---------- */
+function go(t){
+  S.tab=t; $$('.tab').forEach(b=>b.classList.toggle('on',String(b.dataset.tab)===String(t)));
+  $$('.part').forEach(s=>s.classList.toggle('on',s.id==='part'+t));
+  $$('audio').forEach(a=>{ if(a.dataset.part!=String(t)) a.pause(); });
+  $$('.dgrp').forEach(g=>g.classList.toggle('cur',g.dataset.p==String(t)||t==='R'&&g.dataset.p==='1'));
+  if(t==='R') results();
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+function jump(n){const q=QBY[n]; if(String(S.tab)!==String(q.part)) go(q.part); setTimeout(()=>{const w=$('#w'+n)||$('#w'+(q.set||n)); if(w){w.scrollIntoView({behavior:'smooth',block:'center'}); w.classList.remove('flash'); void w.offsetWidth; w.classList.add('flash'); const i=$('#q'+n); if(i&&!i.readOnly) setTimeout(()=>i.focus({preventScroll:true}),400);}},120);}
+
+/* ---------- events ---------- */
+document.addEventListener('click',e=>{
+  const t=e.target.closest('button, svg'); if(!t) return;
+  if(t.dataset.tab){go(isNaN(t.dataset.tab)?t.dataset.tab:+t.dataset.tab);return;}
+  if(t.dataset.go){go(isNaN(t.dataset.go)?t.dataset.go:+t.dataset.go);return;}
+  if(t.dataset.jump){jump(+t.dataset.jump);return;}
+  if(t.dataset.mark){const p=+t.dataset.mark; const blank=partQs(p).filter(q=>!isAnswered(q.n)).map(q=>q.n);
+    if(blank.length && !confirm(`You have not answered question(s) ${blank.join(', ')}. Check Part ${p} anyway?`)) return;
+    S.marked[p]=true; save(); paint(); toast(`Part ${p}: ${partScore(p)} / 10`); window.scrollTo({top:$('#sb'+p).offsetTop-90,behavior:'smooth'}); return;}
+  if(t.dataset.retry){S.marked[+t.dataset.retry]=false; save(); paint(); return;}
+  if(t.classList.contains('opt')&&t.dataset.set){const set=+t.dataset.set; if(S.marked[QBY[set].part]) return; let p=S.ans['t'+set]||[]; const v=t.dataset.v;
+    if(p.includes(v)) p=p.filter(x=>x!==v); else { if(p.length>=2){toast('Choose TWO letters only. Tap one to remove it first.');return;} p=p.concat(v).sort(); }
+    S.ans['t'+set]=p; save(); paint(); return;}
+  if((t.classList.contains('opt')||t.classList.contains('lchip'))&&t.dataset.n){const n=+t.dataset.n; if(S.marked[QBY[n].part]) return; S.ans[n]=S.ans[n]===t.dataset.v?'':t.dataset.v; save(); paint(); return;}
+  if(t.closest('#mapwrap')){openMap();return;}
+});
+document.addEventListener('input',e=>{const i=e.target; if(i.matches('.gap input')){S.ans[+i.dataset.n]=i.value; save(); paint();}});
+document.addEventListener('keydown',e=>{ if(e.key==='Enter'&&e.target.matches('.gap input')){ const ins=$$(`#part${S.tab} .gap input`); const k=ins.indexOf(e.target); if(ins[k+1]) ins[k+1].focus(); } if(e.key==='Escape') closeMap(); });
+function openMap(){const m=$('#modal'); m.innerHTML=DATA.mapSVG; m.classList.add('on');}
+function closeMap(){$('#modal').classList.remove('on');}
+$('#modal').addEventListener('click',closeMap);
+$('#arBtn').onclick=()=>{document.body.classList.toggle('ar-on');};
+
+/* ---------- save / load (JSON file) ---------- */
+function save(){/* saving is by JSON file (Save button) */}
+function restore(o){if(!o||typeof o!=='object')return false; S.ans=o.ans||{}; S.marked=o.marked||{}; S.plays=Object.assign({1:0,2:0,3:0,4:0},o.plays||{}); S.name=o.name||''; return true;}
+$('#saveBtn').onclick=()=>{const blob=new Blob([JSON.stringify({app:APPKEY,saved:new Date().toISOString(),...S},null,1)],{type:'application/json'}); const a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download=`Listening-Test-10C-${(S.name||'my-answers').replace(/\s+/g,'-')}.json`; a.click(); setTimeout(()=>URL.revokeObjectURL(a.href),2000); toast('Answers saved to a file. Keep it to continue later.');};
+$('#loadBtn').onclick=()=>$('#loadFile').click();
+$('#loadFile').onchange=e=>{const f=e.target.files[0]; if(!f) return; const rd=new FileReader(); rd.onload=()=>{try{const o=JSON.parse(rd.result); if(o.app&&o.app!==APPKEY){toast('This file is from a different app.');return;} restore(o); save(); paint(); updPlays(); go(S.tab==='R'?'R':(+o.tab||1)); toast('Answers loaded.');}catch(err){toast('Could not read that file.');}}; rd.readAsText(f); e.target.value='';};
+$('#resetBtn').onclick=()=>{ if(!confirm('Clear ALL answers and start again?')) return; S.ans={};S.marked={};S.plays={1:0,2:0,3:0,4:0};S.name=''; save(); paint(); updPlays(); go(1);};
+
+function toast(m){const t=$('#toast'); t.innerHTML=m; t.classList.add('on'); clearTimeout(t._h); t._h=setTimeout(()=>t.classList.remove('on'),2600);}
+function confetti(){const c=$('#confetti'),x=c.getContext('2d');c.width=innerWidth;c.height=innerHeight;const cols=['#e8b93e','#7a2343','#d9573f','#2f8f6b','#e7a6bd','#f6dc8a'];
+  const P=Array.from({length:170},()=>({x:Math.random()*c.width,y:-20-Math.random()*c.height*.5,w:6+Math.random()*7,h:8+Math.random()*8,c:cols[Math.random()*cols.length|0],vy:2+Math.random()*3.5,vx:-1.5+Math.random()*3,r:Math.random()*6,vr:-.2+Math.random()*.4}));
+  let f=0;(function loop(){x.clearRect(0,0,c.width,c.height);P.forEach(p=>{p.y+=p.vy;p.x+=p.vx;p.r+=p.vr;x.save();x.translate(p.x,p.y);x.rotate(p.r);x.fillStyle=p.c;x.fillRect(-p.w/2,-p.h/2,p.w,p.h);x.restore();});if(++f<240)requestAnimationFrame(loop);else x.clearRect(0,0,c.width,c.height);})();}
+
+/* ---------- start ---------- */
+render();
+paint(); updPlays(); go(1);
+window.__T={S,judge,norm,partScore,band,paint,QBY};
+})();
+
+</script>
+</body>
+</html>
